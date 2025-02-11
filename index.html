@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> </title>
+    <style>
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #ff758c, #ff7eb3);
+            overflow: hidden;
+            flex-direction: column;
+            padding: 20px;
+            text-align: center;
+        }
+        .envelope-container {
+            position: relative;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .envelope {
+            width: 120px;
+            height: 80px;
+            background: #ff4d6d;
+            position: relative;
+            border-radius: 10px;
+            margin: 10px auto 0 auto;
+        }
+        .envelope::before {
+            content: "";
+            position: absolute;
+            top: -40px;
+            left: 0;
+            width: 0;
+            height: 0;
+            border-left: 60px solid transparent;
+            border-right: 60px solid transparent;
+            border-bottom: 40px solid #ff4d6d;
+        }
+        .message {
+            background: white;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-size: 16px;
+            font-weight: bold;
+            display: inline-block;
+            text-align: center;
+        }
+        .click-me {
+            background: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        .invitation {
+            display: none;
+            text-align: center;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            position: relative;
+            width: 90%;
+            max-width: 400px;
+            margin: 20px auto;
+        }
+        .heart {
+            color: red;
+            font-size: 60px;
+            animation: heartbeat 1s infinite;
+            margin-bottom: 15px;
+        }
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+            100% { transform: scale(1); }
+        }
+        .button-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            margin-top: 20px;
+            position: relative;
+        }
+        .btn, .no-btn {
+            display: inline-block;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: 0.3s;
+        }
+        .btn {
+            background: #ff4d6d;
+            color: white;
+        }
+        .btn:hover {
+            background: #d72638;
+            transform: scale(1.1);
+        }
+        .no-btn {
+            background: gray;
+            color: white;
+            transition: 0.3s ease-in-out;
+        }
+        @media (max-width: 600px) {
+            .invitation {
+                padding: 25px;
+                font-size: 14px;
+            }
+            .btn, .no-btn {
+                padding: 10px 20px;
+                font-size: 16px;
+            }
+            .button-container {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="envelope-container">
+        <div class="message">Hello, Ms. Zyra Dela Vega. Kindly click the button below to open. Thank you.</div>
+        <div class="envelope"></div>
+        <button class="click-me" onclick="openInvitation()">Click me</button>
+    </div>
+    <div class="invitation" id="invitation">
+        <div class="heart">❤️</div>
+        <h2>Will you be my Valentine?</h2>
+        <div class="button-container">
+            <button class="btn" onclick="showMessage()">Yes</button>
+            <button class="no-btn" id="noButton">No</button>
+        </div>
+    </div>
+    <script>
+        function openInvitation() {
+            document.querySelector(".envelope-container").style.display = "none";
+            document.getElementById("invitation").style.display = "block";
+        }
+        function showMessage() {
+            alert("Thank you bb, Dating gawi 7pm sunduin na kita sainyo");
+        }
+        document.addEventListener("DOMContentLoaded", function() {
+            const noButton = document.getElementById("noButton");
+            function moveButton() {
+                const x = Math.random() * (window.innerWidth - 200) - (window.innerWidth / 4);
+                const y = Math.random() * (window.innerHeight - 200) - (window.innerHeight / 4);
+                noButton.style.transform = `translate(${x}px, ${y}px)`;
+            }
+            noButton.addEventListener("mouseover", moveButton);
+            noButton.addEventListener("click", moveButton);
+        });
+    </script>
+</body>
+</html>
